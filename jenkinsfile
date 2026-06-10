@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    
+    tools {
+        // Must match the name configured in Jenkins Global Tool Configuration
+        nodejs 'node' 
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pulls code from your Git repository
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing project dependencies...'
+                // npm ci is preferred for CI/CD because it enforces clean, repeatable builds
+                sh 'npm ci'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                echo 'Running unit tests...'
+                // Executes your test runner command
+                sh 'npm test'
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline has completed.'
+        }
+        success {
+            echo 'Tests passed successfully!'
+        }
+        failure {
+            echo 'Tests failed. Check console output.'
+        }
+    }
+}

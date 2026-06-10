@@ -1,0 +1,10 @@
+Paso1: Tenemos la app
+2: Subimos a Github
+3: Ejecutar testeo unitario
+4: Analisis de calidad SonarQube
+5: Escaneo de seguridad/dependencias
+6: Construimos imagen docker
+7: Usamos registry como Ejecutar
+8: Actualizamos Manifest o Helm Char
+9: Despliegue con ArgoCD
+10: Subimos a ambiente K8s
